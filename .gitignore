@@ -1,0 +1,22 @@
+# Virtual environment
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+build/
+dist/
+
+# SeleniumBase
+downloaded_files/
+
+# 機密
+.env
+
+# 執行期產物（cookies.json 含等同登入憑證的 TGC，絕對不要 commit）
+data/
+
+# OS
+.DS_Store

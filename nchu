@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# 專案 CLI 包裝：自動用 .venv 的 python，不用管路徑。
+#   ./nchu check | watch | login | logout
+set -euo pipefail
+cd "$(dirname "${BASH_SOURCE[0]}")"
+
+PY=".venv/bin/python"
+if [ ! -x "$PY" ]; then
+    PY="$(command -v python3 || true)"
+    if [ -z "$PY" ]; then
+        echo "找不到 python3，請先安裝或建立 .venv" >&2
+        exit 1
+    fi
+fi
+
+export PYTHONPATH="$PWD/src${PYTHONPATH:+:$PYTHONPATH}"
+exec "$PY" -m nchu_course "$@"
